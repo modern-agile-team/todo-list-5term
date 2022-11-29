@@ -9,7 +9,7 @@
 
 ## **🚀** 기능 요구 사항
 
-[문서](https://ujins.notion.site/9c439274afd446c18bfc0af251d5ce11)에 적힌 요구 상항을 참고한다.
+[문서](https://catnip-echium-964.notion.site/37c3dd62594a43728c1361a1bfe9e76c)에 적힌 요구 상항을 참고한다.
 
 
 ## **📮** 과제 제출 방법
