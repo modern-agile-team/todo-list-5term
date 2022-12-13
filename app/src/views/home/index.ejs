@@ -5,15 +5,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/js/home/toDoList.js" defer></script>
     <title>Document</title>
 </head>
 
 <body>
     <h1>To do list</h1>
-    <input type="text" id='addValue' onKeypress="javascript:if(event.keyCode==13) {addlist()}">
-    <input type="button" value="+" onclick="addList()">
+    <input id="text" type="text" onKeypress="javascript:if(event.keyCode==13) {addlist()}">
+    <input id="button" type="button" value="+">
     <ul id='fruits'></ul>
-  
+
 </body>
 
 </html>
