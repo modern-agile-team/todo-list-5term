@@ -10,7 +10,7 @@ class User {
     async correction() {
         const client = this.body;
         try {
-            const response = await UserStorage.correction(client);
+            const response = await UserStorage.update(client);
             return response;
         } catch (err) {
             return { success: false, msg: err };
@@ -40,10 +40,7 @@ class User {
     async load() {
         try {
             const response = await UserStorage.getToDoList();
-            //return response;
-            if(response.success){
-                return response.data;
-            }
+            if(response.success) return response.data;
         } catch (err) {
             return { success: false, msg: err };
         }

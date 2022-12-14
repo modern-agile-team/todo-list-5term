@@ -39,13 +39,13 @@ class UserStorage {
                 })
         })
     }
-    //UPDATE
-    static async correction(list) {
+
+    static async update(list) {
         return new Promise((resolve, reject) => {
-            const query = "UPDATE lists SET description = (?) WHERE id = (?);";
+            const query = "UPDATE lists SET description = (?) WHERE id = (?);"; 
             db.query(
                 query,
-                [list.text, list.li],
+                [list.text, list.id],
                 (err) => {
                     if (err) reject(`${err}`);
                     resolve({ success: true });

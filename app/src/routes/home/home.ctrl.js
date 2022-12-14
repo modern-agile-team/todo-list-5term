@@ -24,8 +24,8 @@ const output = {
 
 const process = {
   addlist: async (req, res) => {
-    const user = new User(req.body); //User { body: { text: 'aa' } }
-    const response = await user.addlist();
+    const list = new User(req.body); //User { body: { text: 'aa' } }
+    const response = await list.addlist();
     // console.log(response); // {success : true }
     return res.json(response);
   },
@@ -36,7 +36,7 @@ const process = {
   },
   correction: async (req, res) => {
     const list = new User(req.body);
-    const response = await list.Delete();
+    const response = await list.correction();
     return res.json(response);
   },
 }
