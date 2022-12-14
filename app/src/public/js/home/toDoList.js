@@ -13,7 +13,7 @@ function load() {
       res.forEach(list => {
         const li = document.createElement('li');
         li.setAttribute('id', list.id);
-        const basic = basicFunction(list.id)
+        const basic = basicFunction(list.id,li)
         li.append(basic.checkbox, basic.updateText, basic.text, basic.hiddenBtn, basic.pencilImg, basic.eraserImg);
         ul.appendChild(li);
         document.getElementById(list.id + "text").innerHTML = list.description;
@@ -28,9 +28,9 @@ function load() {
 
 function addlist() {
   if (text.value === '') return alert("아무것도 입력되지 않았습니다.")
-
   const req = {
     text: text.value,
+    child: ul.hasChildNodes()
   };
 
   fetch("/", {
@@ -42,18 +42,14 @@ function addlist() {
   })
     .then((res) => res.json())
     .then((res) => {
-      if (res.success) {
-        const li = document.createElement('li'); // li 동적 생성
-        const ulCount = ul.hasChildNodes() ? Number(ul.lastChild.id) + 1 : 0; //  ul 마지막 자식태그 id 구하기
+        const li = document.createElement('li');
+        const ulCount = res['LAST_INSERT_ID()'];
         li.setAttribute('id', ulCount);
-        const basic = basicFunction(ulCount);
+        const basic = basicFunction(ulCount, li);
         li.append(basic.checkbox, basic.updateText, basic.text, basic.hiddenBtn, basic.pencilImg, basic.eraserImg);
         ul.appendChild(li);
         document.getElementById(ulCount + "text").innerHTML = req.text;
         text.value = '';
-      } else {
-        alert(res.msg);
-      }
     })
     .catch((err) => {
       console.error(err);
@@ -112,7 +108,7 @@ function correction(id,text) {
     });
 }
 
-function basicFunction(id) {
+function basicFunction(id,li) {
   const checkbox = document.createElement('input');
   checkbox.setAttribute('type', 'checkbox');
   checkbox.setAttribute('onClick', 'isCheck(this)');
@@ -138,6 +134,7 @@ function basicFunction(id) {
   eraserImg.setAttribute('onClick', 'Delete(this)');
   eraserImg.setAttribute('src', '/image/eraser.png');
 
+  li.setAttribute('style', 'border-bottom: 1px solid #CBCBCB; height: 34px; width: 359.23px; margin-bottom: 9px;');
   return { checkbox, text, pencilImg, eraserImg, hiddenBtn, updateText };
   //.addEventListener(오류 발생) https://stackoverflow.com/questions/64539129/cannot-use-addeventlistener-on-a-createelement-a-button-after-displaying-i
 }

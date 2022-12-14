@@ -3,16 +3,16 @@
 const db = require("../config/db");
 
 class UserStorage {
-    static async save(userInfo) {
-        //console.log(userInfo.text === '');
+    static async save(list) {
         return new Promise((resolve, reject) => {
-            const query = "INSERT INTO lists(description) values(?);";
+            const querySave = "INSERT INTO lists(description) values(?);";
+            const queryId = "SELECT LAST_INSERT_ID();";
+            db.query(querySave,list.text,(err) => {if(err) alert(`${err}`)});
             db.query(
-                query,
-                userInfo.text,
-                (err, text) => {
+                queryId,
+                (err,data) => {
                     if (err) reject(`${err}`);
-                    resolve({ success: true });
+                    resolve({ success: true, id: data});
                 })
         })
     }

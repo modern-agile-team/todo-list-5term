@@ -31,7 +31,7 @@ class User {
         const client = this.body;
         try {
             const response = await UserStorage.save(client);
-            return response;
+            if(response.success) return response.id[0]
         } catch (err) {
             return { success: false, msg: err };
         }
