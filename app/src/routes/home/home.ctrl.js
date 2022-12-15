@@ -17,7 +17,6 @@ const output = {
 
   todo: async (req, res) => {
     let a = await TodoStorage.loading();
-    console.log("todorender", a);
     res.render("home/todo", { data: a });
   },
 };

@@ -26,9 +26,6 @@
           let pchBtn = document.createElement("button");
           let chkBox = document.createElement("input");
           chkBox.setAttribute("type", "checkbox");
-          if (whattodo.is_check == null) {
-            chkBox.setAttribute("ckecked", "true");
-          } else chkBox.setAttribute("ckecked", "false");
 
           title.innerHTML = whattodo.description;
           pchBtn.innerHTML = "수정";
@@ -36,12 +33,16 @@
           pchBtn.setAttribute("id", "pchBtn" + whattodo.id);
           delBtn.setAttribute("id", "delBtn" + whattodo.id);
           chkBox.setAttribute("id", "chkBox" + whattodo.id);
-          if (whattodo.is_check == null) chkBox.setAttribute("checked", true);
-          else chkBox.setAttribute("checked", false);
+
           listSpace.append(title);
           listSpace.append(pchBtn);
           listSpace.append(delBtn);
           listSpace.append(chkBox);
+          if (whattodo.is_check == 1) {
+            document.getElementById("chkBox" + whattodo.id).checked = true;
+          }
+          if (document.getElementById("chkBox" + whattodo.id).checked == true) {
+          }
         }
       </script>
     </div>
