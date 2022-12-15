@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To Do List</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  </head>
+  <body>
+    <header>To Do List</header>
+    <button id="test">test</button>
+    <div id="createList"><button id="newListBtn">새 항목 생성</button></div>
+    <div id="listSpace">
+      <script>
+        let data = "<%=JSON.stringify(data)%>";
+        data = data.replaceAll("&#34", '"');
+        data = data.replaceAll(";", "");
+        data = JSON.parse(data);
+
+        let listSpace = document.getElementById("listSpace");
+        for (let whattodo of data) {
+          let title = document.createElement("div");
+          let delBtn = document.createElement("button");
+          let pchBtn = document.createElement("button");
+          let chkBox = document.createElement("input");
+          chkBox.setAttribute("type", "checkbox");
+          if (whattodo.is_check == null) {
+            chkBox.setAttribute("ckecked", "true");
+          } else chkBox.setAttribute("ckecked", "false");
+
+          title.innerHTML = whattodo.description;
+          pchBtn.innerHTML = "수정";
+          delBtn.innerHTML = "삭제";
+          pchBtn.setAttribute("id", "pchBtn" + whattodo.id);
+          delBtn.setAttribute("id", "delBtn" + whattodo.id);
+          chkBox.setAttribute("id", "chkBox" + whattodo.id);
+          if (whattodo.is_check == null) chkBox.setAttribute("checked", true);
+          else chkBox.setAttribute("checked", false);
+          listSpace.append(title);
+          listSpace.append(pchBtn);
+          listSpace.append(delBtn);
+          listSpace.append(chkBox);
+        }
+      </script>
+    </div>
+    <script type="module" src="js/home/todo.js"></script>
+    <script src="css/home/todo.css"></script>
+  </body>
+  <!-- <script type="text/javascript" src="/js/to_do_list.js">
+  </script>
+  -->
+</html>
