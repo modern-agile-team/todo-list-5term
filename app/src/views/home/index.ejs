@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <script>
+      let data = "<%=JSON.stringify(data)%>";
+      data = data.replaceAll("&#34", '"');
+      data = data.replaceAll(";", "");
+      data = JSON.parse(data);
+
+      function creat(data, index) {
+        let newP = document.createElement("div");
+        let newEditBtn = document.createElement("button");
+        let newDeleteBtn = document.createElement("button");
+        let newCheckBox = document.createElement("label");
+        if (data.is_check === 0) {
+          newCheckBox.innerHTML = `<input class="checkbox" type="checkbox" onClick="toCheck(${data.id}, 1)">${data.description}`;
+        } else if (data.is_check === 1) {
+          newCheckBox.innerHTML = `<input class="checkbox" type="checkbox" 
+          checked onClick="toCheck(${data.id}, 0)"><del>${data.description}</del>`;
+        }
+        newP.setAttribute("class", "line")
+        newCheckBox.setAttribute("class", "label")
+        newEditBtn.setAttribute("id", "editBtn" + index);
+        newEditBtn.setAttribute("class", "editBtn");
+        newEditBtn.setAttribute("onClick",`change('editBtn', ${index}, '${data.description}')`);
+        newDeleteBtn.setAttribute("id", "deleteBtn" + index);
+        newDeleteBtn.setAttribute("class", "deleteBtn");
+        newDeleteBtn.setAttribute("onClick", `toDelete(${data.id})`);
+        newP.setAttribute("id", data.id);
+        let par = document.getElementsByTagName("div")[2];
+        par.appendChild(newP);
+        par2 = document.getElementsByTagName("div")[index + 3];
+        par2.appendChild(newCheckBox);
+        if(data.is_check == 0) {par2.appendChild(newEditBtn);}
+        par2.appendChild(newDeleteBtn);
+      }
+
+      function isCheck(data, index) {
+        if (data[index].is_check === 0) {
+        }
+      }
+    </script>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/home/root.css" />
+    <script src="/js/home/root.js" defer></script>
+    <script
+      src="https://kit.fontawesome.com/2db5223d1d.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <title>document</title>
+  </head>
+  <body>
+    
+    <div class="todoList-page">
+      <div class="form">
+        <h2>To Do List</h2>
+        <br />
+        <input
+          id="list"
+          autocomplete="off"
+          type="text"
+          placeholder="일정 입력"
+          onkeyup="if(window.event.keyCode==13){toCreate()}"
+        />
+        <button class="btn" id="createBtn"></button><br />
+        <div class="inForm">
+          <script>
+            data.forEach((data, index) => {
+              creat(data, index);
+            });
+          </script>
+          <p id="space"></p>
+        </div>
+        
+        </div>
+      </div>
+      
+    </div>
+  </body>
+</html>
