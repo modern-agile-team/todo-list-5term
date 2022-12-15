@@ -10,11 +10,13 @@ class ToDoLsit {
     try {
       let response = {};
       if (client.description.length > 16) {
+
         response = { success: false, msg: "글의 길이가 너무 깁니다." };
         return response;
       } else if (client.description === "") {
         console.log("실행");
         response = { success: false, msg: "일정을 입력하세요" };
+
         return response;
       }
       response = await tData.saveList(client);
@@ -38,6 +40,7 @@ class ToDoLsit {
           return response;
         } else if (client.description == "") {
           response = { success: false, msg: "일정을 입력하세요." };
+
           return response;
         }
         response = await tData.editData(client);
