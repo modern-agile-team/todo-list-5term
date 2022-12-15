@@ -9,21 +9,22 @@
 }
 .form #list {
   box-sizing: border-box;
-
-  width: 359.23px;
-  height: 34px;
+  background-color: #f1f1f1;
+  border: none;
+  width: 330px;
+  height: 30px;
   left: 23.88px;
-  top: 69px;
   margin-left: 30px;
   margin-right: 30px;
   border-bottom: 1px solid #cbcbcb;
 }
 
 .form h2 {
+  position: relative;
   width: 101.26px;
-  left: 22.06px;
   margin-left: 30px;
-  margin-top: 30px;
+  margin-top: 1px;
+  top: 30px;
 
   font-family: "Inter";
   font-style: normal;
@@ -33,9 +34,12 @@
 }
 
 .btn {
+  position: absolute;
+  border: none;
+  left: 85%;
+  top: 69px;
   box-sizing: border-box;
-
-  margin-right: 20px;
+  /* margin-right: 20px; */
 }
 
 .label {
@@ -45,29 +49,82 @@
 
   margin-left: 30px;
   margin-right: 30px;
-
-  border-bottom: 1px solid #cbcbcb;
+  /* margin-top: 10px; */
 }
 
 .editBtn {
   position: absolute;
-  left: 83.2%;
-  right: 12.84%;
-  content: "\f304";
-  font: var(--fa-font-solid);
+  border: none;
+  left: 79%;
+  /* right: 5%; */
   /* margin-left: 200px; */
 }
 
 .deleteBtn {
   position: absolute;
-  left: 91.85%;
-  right: 5.43%;
+  border: none;
+  left: 85%;
+  /* right: 5.43%; */
 }
 
 .inForm #space {
   margin-bottom: 30px;
 }
 
-.div {
+.line {
   margin-top: 10px;
+  margin-left: 30px;
+  margin-right: 30px;
+  border-bottom: 1px solid #cbcbcb;
+}
+.checkbox {
+  margin-right: 10px;
+  margin-left: -25px;
+}
+button.editBtn::before {
+  content: "\f304";
+  font: var(--fa-font-solid);
+}
+
+button.deleteBtn::before {
+  content: "\f1f8";
+  font: var(--fa-font-solid);
+}
+
+button.btn::before {
+  content: "\2b";
+  font: var(--fa-font-solid);
+}
+label.label:hover {
+  /* color: #e0e0e0; */
+  background-color: #e0e0e0;
+}
+
+button:hover {
+  transform: scale(1.2);
+}
+
+.editInput {
+  box-sizing: border-box;
+  position: relative;
+  background-color: #ffffff;
+
+  border: 0;
+  width: 233px;
+  height: 25px;
+  left: 10.88px;
+  /* margin-left: 1px; */
+  margin-right: 30px;
+  border-bottom: 1px solid #cbcbcb;
+}
+
+.doneBtn {
+  position: absolute;
+  border: none;
+  left: 76.5%;
+}
+.checkbox2 {
+  position: relative;
+  margin-left: 34px;
+  /* margin-right: 3px; */
 }

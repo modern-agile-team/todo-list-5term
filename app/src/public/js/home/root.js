@@ -128,13 +128,20 @@ function getId(type, index) {
 function change(type, index, description) {
   let id = getId(type, index);
   let toCange = document.getElementById(type + index).parentNode;
-  toCange.innerHTML = `<input id="${"edit" + id}" 
+  toCange.innerHTML = `<input type="checkbox" class="checkbox2"><input id="${
+    "edit" + id
+  }" class="editInput"
   type="text" value="${description}" 
   onkeyup="if(window.event.keyCode===13){toEdit(${id})}"/>`;
   let newEditBtn = document.createElement("button");
+  let newdeleteBtn = document.createElement("button");
   newEditBtn.innerHTML = "완료";
   newEditBtn.setAttribute("id", "editBtn" + index);
+  newEditBtn.setAttribute("class", "doneBtn");
+  newdeleteBtn.setAttribute("class", "deleteBtn");
   newEditBtn.setAttribute("onClick", `toEdit(${id})`);
+  newdeleteBtn.setAttribute("onClick", `toDelete(${id})`);
   let text = document.getElementById(id);
   text.appendChild(newEditBtn);
+  text.appendChild(newdeleteBtn);
 }

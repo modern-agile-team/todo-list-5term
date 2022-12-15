@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
   <head>
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script>
       let data = "<%=JSON.stringify(data)%>";
       data = data.replaceAll("&#34", '"');
@@ -13,15 +12,13 @@
         let newEditBtn = document.createElement("button");
         let newDeleteBtn = document.createElement("button");
         let newCheckBox = document.createElement("label");
-        newEditBtn.innerHTML = "수정";
-        newDeleteBtn.innerHTML = "삭제";
         if (data.is_check == 0) {
           newCheckBox.innerHTML = `<input class="checkbox" type="checkbox" onClick="toCheck(${data.id}, 1)">${data.description}`;
         } else if (data.is_check == 1) {
           newCheckBox.innerHTML = `<input class="checkbox" type="checkbox" 
           checked onClick="toCheck(${data.id}, 0)"><del>${data.description}</del>`;
         }
-        newP.setAttribute("class", "div")
+        newP.setAttribute("class", "line")
         newCheckBox.setAttribute("class", "label")
         newEditBtn.setAttribute("id", "editBtn" + index);
         newEditBtn.setAttribute("class", "editBtn");
@@ -52,6 +49,7 @@
       src="https://kit.fontawesome.com/2db5223d1d.js"
       crossorigin="anonymous"
     ></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <title>document</title>
   </head>
   <body>
@@ -66,7 +64,7 @@
           placeholder="일정 입력"
           onkeyup="if(window.event.keyCode==13){toCreate()}"
         />
-        <button class="btn" id="createBtn">생성</button><br />
+        <button class="btn" id="createBtn"></button><br />
         <div class="inForm">
           <script>
             data.forEach((data, index) => {
