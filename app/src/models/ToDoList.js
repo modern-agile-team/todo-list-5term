@@ -28,17 +28,18 @@ class ToDoLsit {
     try {
       const client = this.body;
       let response = {};
-      if (client.description.length > 16) {
-        response = { success: false, msg: "글자가 너무 깁니다." };
-        return response;
-      } else if (client.description == "") {
-        response = { success: false, msg: "값이 없습니다." };
-        return response;
-      }
+
       if (client.is_check == 0 || client.is_check == 1) {
         response = await tData.editCheck(client);
         return response;
       } else {
+        if (client.description.length > 16) {
+          response = { success: false, msg: "글자가 너무 깁니다." };
+          return response;
+        } else if (client.description == "") {
+          response = { success: false, msg: "값이 없습니다." };
+          return response;
+        }
         response = await tData.editData(client);
         return response;
       }
