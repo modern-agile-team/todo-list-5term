@@ -52,6 +52,20 @@ class UserStorage {
                 })
         })
     }
+
+    static async updateBox(list) {
+        const check = list.box ? 1:0;
+        return new Promise((resolve, reject) => {
+            const query = "UPDATE lists SET is_check = (?) WHERE id = (?);"; 
+            db.query(
+                query,
+                [check, list.id],
+                (err) => {
+                    if (err) reject(`${err}`);
+                    resolve({ success: true });
+                })
+        })
+    }
 }
 
 module.exports = UserStorage;

@@ -13,10 +13,11 @@ function load() {
       res.forEach(list => {
         const li = document.createElement('li');
         li.setAttribute('id', list.id);
-        const basic = basicFunction(list.id,li)
-        li.append(basic.checkbox, basic.updateText, basic.text, basic.hiddenBtn, basic.pencilImg, basic.eraserImg);
+        const basic = basicFunction(list.id, li, list.is_check);
+        li.append(basic.checkbox, basic.updateText, basic.text, basic.hiddenBtn, basic.eraserImg, basic.pencilImg);
         ul.appendChild(li);
         document.getElementById(list.id + "text").innerHTML = list.description;
+        if(list.is_check) isCheckUpdate(basic.checkbox);
       });
     })
     .catch((err) => {
@@ -27,7 +28,7 @@ function load() {
 };
 
 function addlist() {
-  if (text.value === '') return alert("아무것도 입력되지 않았습니다.")
+  if (text.value === '') return alert("아무것도 입력되지 않았습니다.");
   const req = {
     text: text.value,
     child: ul.hasChildNodes()
@@ -46,7 +47,7 @@ function addlist() {
         const ulCount = res['LAST_INSERT_ID()'];
         li.setAttribute('id', ulCount);
         const basic = basicFunction(ulCount, li);
-        li.append(basic.checkbox, basic.updateText, basic.text, basic.hiddenBtn, basic.pencilImg, basic.eraserImg);
+        li.append(basic.checkbox, basic.updateText, basic.text, basic.hiddenBtn, basic.eraserImg, basic.pencilImg);
         ul.appendChild(li);
         document.getElementById(ulCount + "text").innerHTML = req.text;
         text.value = '';
@@ -108,10 +109,13 @@ function correction(id,text) {
     });
 }
 
-function basicFunction(id,li) {
+function basicFunction(id,li,check) {
+
+  //console.log(check);
   const checkbox = document.createElement('input');
   checkbox.setAttribute('type', 'checkbox');
-  checkbox.setAttribute('onClick', 'isCheck(this)');
+  checkbox.setAttribute('onClick', 'isCheckUpdate(this)');
+  if(check)checkbox.setAttribute('checked','');
 
   const hiddenBtn = document.createElement('input');
   hiddenBtn.setAttribute('type', 'button');
@@ -129,7 +133,7 @@ function basicFunction(id,li) {
   const pencilImg = document.createElement('img');
   pencilImg.setAttribute('onClick', 'conversion(this)');
   pencilImg.setAttribute('src', '/image/pencil.png')
-
+  
   const eraserImg = document.createElement('img');
   eraserImg.setAttribute('onClick', 'Delete(this)');
   eraserImg.setAttribute('src', '/image/eraser.png');
@@ -166,17 +170,56 @@ function conversion(img) {
   //this.parentNode.firstChild.nodeName 기본적으로 함수가 아닌 속성이므로 아무 효과가 없다.  
 }
 
-function isCheck(box) {
-  //closest()등 부모요소 자식요소 가져와서 textNode 변경 확인
+function isCheckUpdate(box) {
+  const li = box.parentNode;
+
+  const req = {
+    box: box.checked,
+    id: li.id,
+  };
+
+   fetch("/", {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(req),
+  })
+    .then((res) => res.json())
+    .then((res) => {
+      if (res.success) {
+        isCheck(box);
+      } else {
+        alert(res.msg);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+}
+
+function isCheck(box){
   const text = box.nextSibling.nextSibling;
   const pensilImg = box.nextSibling.nextSibling.nextSibling.nextSibling;
   
   if (box.checked === true) {
-    text.setAttribute('style', 'color:#797979; text-decoration:line-through;');
-    pensilImg.style.display = 'none';
+    if(text.style.display === 'none'){
+      text.setAttribute('style', 'color:#797979; text-decoration:line-through;');
+      text.style.display = 'none';
+    }
+    else{
+      text.setAttribute('style', 'color:#797979; text-decoration:line-through;');
+      pensilImg.style.display = 'none';  
+    }
   }
   else {
+    if(text.style.display === 'none'){
+      text.setAttribute('style', 'color:none');
+      text.style.display = 'none';
+    }
+    else{
     text.setAttribute('style', 'color:none');
     pensilImg.style.display = '';
+    }
   }
 }

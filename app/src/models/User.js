@@ -10,8 +10,14 @@ class User {
     async correction() {
         const client = this.body;
         try {
-            const response = await UserStorage.update(client);
-            return response;
+            if(client.box === undefined){
+                const response = await UserStorage.update(client);
+                return response;    
+            }
+            else{
+                const response = await UserStorage.updateBox(client);
+                return response;        
+            }
         } catch (err) {
             return { success: false, msg: err };
         }

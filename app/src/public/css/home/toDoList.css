@@ -3,8 +3,14 @@ li:hover {
 }
 
 img:hover {
-    height: 18px;
+    height: 20px;
+    margin: none;
     /* margin-left: 10px; */
+}
+
+img{
+    float: right;
+    margin-top: 3px;
 }
 
 h1{
