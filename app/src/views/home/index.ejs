@@ -12,9 +12,9 @@
         let newEditBtn = document.createElement("button");
         let newDeleteBtn = document.createElement("button");
         let newCheckBox = document.createElement("label");
-        if (data.is_check == 0) {
+        if (data.is_check === 0) {
           newCheckBox.innerHTML = `<input class="checkbox" type="checkbox" onClick="toCheck(${data.id}, 1)">${data.description}`;
-        } else if (data.is_check == 1) {
+        } else if (data.is_check === 1) {
           newCheckBox.innerHTML = `<input class="checkbox" type="checkbox" 
           checked onClick="toCheck(${data.id}, 0)"><del>${data.description}</del>`;
         }
@@ -60,6 +60,7 @@
         <br />
         <input
           id="list"
+          autocomplete="off"
           type="text"
           placeholder="일정 입력"
           onkeyup="if(window.event.keyCode==13){toCreate()}"

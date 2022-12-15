@@ -9,7 +9,10 @@ class ToDoLsit {
     const client = this.body;
     try {
       let response = {};
-      if (client.description === "") {
+      if (client.description.length > 16) {
+        response = { success: false, msg: "글자가 너무 깁니다." };
+        return response;
+      } else if (client.description === "") {
         console.log("실행");
         response = { success: false, msg: "값이 없습니다." };
         return response;
@@ -25,7 +28,10 @@ class ToDoLsit {
     try {
       const client = this.body;
       let response = {};
-      if (client.description == "") {
+      if (client.description.length > 16) {
+        response = { success: false, msg: "글자가 너무 깁니다." };
+        return response;
+      } else if (client.description == "") {
         response = { success: false, msg: "값이 없습니다." };
         return response;
       }

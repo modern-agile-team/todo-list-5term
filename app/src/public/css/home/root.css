@@ -2,7 +2,7 @@
   position: absolute;
   left: calc(50% - 202.5px);
   top: calc(35% - 77px);
-
+  width: 400px;
   background: #f1f1f1;
   box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.24);
   border-radius: 20px;
@@ -72,9 +72,9 @@
 }
 
 .line {
-  margin-top: 10px;
+  margin-top: 20px;
   margin-left: 30px;
-  margin-right: 30px;
+  margin-right: 40px;
   border-bottom: 1px solid #cbcbcb;
 }
 .checkbox {
@@ -129,4 +129,8 @@ button:hover {
   position: relative;
   margin-left: 5px;
   /* margin-right: 3px; */
+}
+
+.form #list:focus {
+  outline: none;
 }
