@@ -2,17 +2,17 @@
 
 *{margin:0;padding:0;}
 
-
-.aa{position: absolute;
+#mainbox{position: absolute;
     width:405px;height:154px;
     background-color:#f1f1f1; border-radius: 20px;
     font-size:20px;
     color:rgb(0, 0, 0);
     line-height:24px;line-height: 100%;
-    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.24)}
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.24);
+    margin: auto;}
 
 h1{
-    position: absolute;
+    /* position: absolute; */
     width: 101.26px;
     height: 24px;
     left: 22.06px;
@@ -27,26 +27,32 @@ h1{
     color: #000000;
 }
 
-#bb{box-sizing: border-box;
+#todo{box-sizing: border-box;
 
-    position: absolute;
-    width: 359.23px;
-    height: 34px;
-    left: 23.88px;
-    top: 69px;
-    
-    border-bottom: 1px solid #CBCBCB;
+/* position: absolute; */
+width: 359.23px;
+height: 34px;
+left: 23.88px;
+top: 69px;
+border-left:none; border-right:none; border-top:none;
+border-bottom: 1px solid #CBCBCB;
+}
+
+#add-button{
+/* position: absolute; */
+left: 89.2%;
+right: 5.38%;
+top: 46.75%;
+bottom: 39.04%;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 20px;
+line-height: 24px;
 
 }
 
-.todo input{box-sizing: border-box;
-
-    position: absolute;
-    width: 359.23px;
-    height: 34px;
-    left: 23.88px;
-    top: 69px;
-    
-    border-bottom: 1px solid #CBCBCB;
-
-}
+*:focus {
+    outline: none;
+  }
