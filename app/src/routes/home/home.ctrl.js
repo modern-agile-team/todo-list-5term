@@ -17,16 +17,15 @@ const output = {
     }
   },
   home: async (req, res, next) => {
-    res.render("home/index"); //, {'data': await output.load()}
+    res.render("home/index");
   },
 
 };
 
 const process = {
   addlist: async (req, res) => {
-    const list = new User(req.body); //User { body: { text: 'aa' } }
+    const list = new User(req.body);
     const response = await list.addlist();
-    // console.log(response); // {success : true }
     return res.json(response);
   },
   Delete: async (req, res) => {

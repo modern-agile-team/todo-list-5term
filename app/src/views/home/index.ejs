@@ -5,17 +5,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/home/toDoList.css">
     <script src="/js/home/toDoList.js" defer></script>
+    <script src="https://kit.fontawesome.com/fa0bcb622a.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/home/toDoList.css">
     <title>Document</title>
 </head>
 
 <body>
     <span id="mainBox">
         <h1>To do list</h1>
-        <span id = 'inputBox'>
+        <span id='inputBox'>
             <input id="text" type="text" onKeypress="javascript:if(event.keyCode==13) {addlist()}">
-            <input id="button" type="button" value="+">
+            <i class="fa-sharp fa-solid fa-plus fa-lg" id="button" type="button"></i>
         </span>
         <ul id='fruits'></ul>
     </span>
