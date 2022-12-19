@@ -3,16 +3,20 @@
 *{margin:0;padding:0;}
 
 #mainbox{position: absolute;
-    width:405px;height:154px;
-    background-color:#f1f1f1; border-radius: 20px;
+    width:405px;
+    min-height:154px;
+    background-color:#f1f1f1;
+    border-radius: 20px;
     font-size:20px;
     color:rgb(0, 0, 0);
     line-height:24px;line-height: 100%;
     box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.24);
-    margin: auto;}
+    display: flex;
+    flex-direction: column;
+    }
 
 h1{
-    /* position: absolute; */
+    position: absolute;
     width: 101.26px;
     height: 24px;
     left: 22.06px;
@@ -32,10 +36,11 @@ h1{
 /* position: absolute; */
 width: 359.23px;
 height: 34px;
-left: 23.88px;
-top: 69px;
+margin-top: 69px;
+margin-left: 23.88px;
 border-left:none; border-right:none; border-top:none;
 border-bottom: 1px solid #CBCBCB;
+background-color: #f1f1f1;
 }
 
 #add-button{
@@ -52,6 +57,11 @@ font-size: 20px;
 line-height: 24px;
 
 }
+
+.가리기{
+    display: none;
+}
+
 
 *:focus {
     outline: none;
