@@ -10,42 +10,30 @@ class ToDoLsit {
     try {
       let response = {};
       if (client.description.length > 16) {
-
-        response = { success: false, msg: "글의 길이가 너무 깁니다." };
-        return response;
+        return { success: false, msg: "글의 길이가 너무 깁니다." };
       } else if (client.description === "") {
         console.log("실행");
-        response = { success: false, msg: "일정을 입력하세요" };
 
-        return response;
+        return { success: false, msg: "일정을 입력하세요" };
       }
-      response = await tData.saveList(client);
-      return response;
+
+      return await tData.saveList(client);
     } catch (err) {
       return err;
     }
   }
 
   async editData() {
+    const client = this.body;
     try {
-      const client = this.body;
-      let response = {};
-
-      if (client.is_check == 0 || client.is_check == 1) {
-        response = await tData.editCheck(client);
-        return response;
-      } else {
+      if (client.description) {
         if (client.description.length > 16) {
-          response = { success: false, msg: "글의 길이 너무 깁니다." };
-          return response;
+          return { success: false, msg: "글의 길이 너무 깁니다." };
         } else if (client.description == "") {
-          response = { success: false, msg: "일정을 입력하세요." };
-
-          return response;
+          return { success: false, msg: "일정을 입력하세요." };
         }
-        response = await tData.editData(client);
-        return response;
       }
+      return await tData.editData(client);
     } catch (err) {
       console.log(err);
       return err;
