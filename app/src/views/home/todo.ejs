@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To Do List</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  </head>
+  <body>
+    <header>To Do List</header>
+    <div id="createList"><button id="newListBtn">새 항목 생성</button></div>
+    <div id="listSpace">
+      <script>
+        let data = "<%=JSON.stringify(data)%>";
+        data = data.replaceAll("&#34", '"');
+        data = data.replaceAll(";", "");
+        data = JSON.parse(data);
+        let listSpace = document.getElementById("listSpace");
+        for (let whattodo of data) {
+          let block = document.createElement("div");
+          block.setAttribute("id", "block" + whattodo.id);
+          let title = document.createElement("div");
+          let delBtn = document.createElement("button");
+          let pchBtn = document.createElement("button");
+          let chkBox = document.createElement("input");
+          chkBox.setAttribute("type", "checkbox");
+
+          title.innerHTML = whattodo.description;
+          pchBtn.innerHTML = "수정";
+          delBtn.innerHTML = "삭제";
+          pchBtn.setAttribute("id", "pchBtn" + whattodo.id);
+          delBtn.setAttribute("id", "delBtn" + whattodo.id);
+          chkBox.setAttribute("id", "chkBox" + whattodo.id);
+
+          listSpace.append(block);
+          block.append(title);
+          block.append(pchBtn);
+          block.append(delBtn);
+          block.append(chkBox);
+          if (whattodo.is_checked == 1) {
+            document.getElementById("chkBox" + whattodo.id).checked = true;
+          } else
+            document.getElementById("chkBox" + whattodo.id).checked = false;
+
+          if (document.getElementById("chkBox" + whattodo.id).checked == true) {
+            title.setAttribute("style", "text-decoration:line-through;");
+            pchBtn.remove();
+          } else title.setAttribute("style", "");
+
+          chkBox.addEventListener("click", () => {
+            const req = {
+              id: whattodo.id,
+              checked: document.getElementById("chkBox" + whattodo.id).checked,
+              difference: "check",
+            };
+            patching(req);
+            // location.reload(true);
+          });
+
+          pchBtn.addEventListener("click", () => {
+            let patchwork = document.createElement("input");
+            patchwork.setAttribute("id", "patchwork");
+            patchwork.setAttribute("value", whattodo.description);
+
+            let agree = document.createElement("button");
+            agree.setAttribute("placeholder", "확인");
+            agree.innerHTML = "확인";
+
+            title.remove();
+            pchBtn.remove();
+            block.append(patchwork);
+            block.append(agree);
+
+            agree.addEventListener("click", () => {
+              const req = {
+                id: whattodo.id,
+                content: patchwork.value,
+                difference: "content",
+              };
+
+              patching(req);
+              // location.reload(true);
+            });
+          });
+
+          delBtn.addEventListener("click", () => {
+            const req = {
+              id: whattodo.id,
+            };
+
+            fetch("/todo", {
+              method: "delete",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(req),
+            }).then(res => res.json());
+            location.reload(true);
+          });
+
+          function patching(req) {
+            fetch("/todo", {
+              method: "PATCH",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(req),
+            }).then(res => res.json());
+            location.reload(true);
+          }
+        }
+      </script>
+    </div>
+    <script type="module" src="js/home/todo.js"></script>
+    <script src="css/home/todo.css"></script>
+  </body>
+  <!-- <script type="text/javascript" src="/js/to_do_list.js">
+  </script>
+  -->
+</html>
