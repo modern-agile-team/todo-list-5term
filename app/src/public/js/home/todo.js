@@ -71,13 +71,6 @@ function loading() {
   // 페이지 렌딩 후 데이터 베이스의 모든 할 일 들을 불러와 수정,삭제 버튼과 함께 게시(select)
 }
 
-function deleting() {
-  // 삭제버튼 클릭 시 데이터 베이스에서 삭제(delete)
-}
-function updating() {
-  // 수정버튼 클릭시 text입력창 열리고 여기 입력 받은값을 덮어씌움(patch)
-}
-
 // 데이터 주고받는 경로
 // todo.ejs input입력받기
 // todo.js fetch입력 후 전달

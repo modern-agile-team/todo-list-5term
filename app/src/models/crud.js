@@ -17,6 +17,16 @@ class Todo {
     const toDoData = TodoStorage.loading(this.body);
     return { data: toDoData };
   }
+
+  patching() {
+    TodoStorage.patching(this.body);
+    return { data: this.body, success: true };
+  }
+
+  deleting() {
+    const toDoData = TodoStorage.deleting(this.body);
+    return { data: toDoData };
+  }
 }
 
 module.exports = Todo;
