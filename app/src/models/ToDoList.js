@@ -8,7 +8,6 @@ class ToDoLsit {
   async saveData() {
     const client = this.body;
     try {
-      let response = {};
       if (client.description.length > 16) {
         return { success: false, msg: "글의 길이가 너무 깁니다." };
       } else if (client.description === "") {
@@ -26,13 +25,12 @@ class ToDoLsit {
   async editData() {
     const client = this.body;
     try {
-      if (client.description) {
-        if (client.description.length > 16) {
-          return { success: false, msg: "글의 길이 너무 깁니다." };
-        } else if (client.description == "") {
-          return { success: false, msg: "일정을 입력하세요." };
-        }
+      if (client.description.length > 16) {
+        return { success: false, msg: "글의 길이 너무 깁니다." };
+      } else if (client.description == "") {
+        return { success: false, msg: "일정을 입력하세요." };
       }
+
       return await tData.editData(client);
     } catch (err) {
       console.log(err);

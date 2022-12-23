@@ -131,7 +131,7 @@ function change(type, index, description) {
   toCange.innerHTML = `<input type="checkbox" class="checkbox2"><input id="${
     "edit" + id
   }" class="editInput"
-  type="text" value="${description}" 
+  type="text"
   onkeyup="if(window.event.keyCode===13){toEdit(${id})}"/>`;
   let newEditBtn = document.createElement("button");
   let newdeleteBtn = document.createElement("button");
@@ -144,4 +144,7 @@ function change(type, index, description) {
   let text = document.getElementById(id);
   text.appendChild(newEditBtn);
   text.appendChild(newdeleteBtn);
+  let input = document.getElementById("edit" + id);
+  input.focus();
+  input.value = description;
 }
