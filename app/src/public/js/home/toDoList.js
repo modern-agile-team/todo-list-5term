@@ -181,9 +181,13 @@ function conversion(img) {
   const eraserImg = hiddenBtn.nextSibling;
   const pencilImg = eraserImg.nextSibling;
   let updateOn = updateText.style.display === 'none' ? true : false;
+  
 
   if (updateOn) {
     updateText.value = text.innerText;
+    setTimeout(function(){
+      updateText.focus();
+    },100);
     updateText.style.display = '';
     text.style.display = 'none';
     hiddenBtn.style.display = '';
