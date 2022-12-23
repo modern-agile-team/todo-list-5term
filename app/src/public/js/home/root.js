@@ -18,23 +18,20 @@ function toCreate() {
   })
     .then((res) => res.json())
     .then((res) => {
-      console.log(res);
       if (res.success) {
-        // alert("생성성공");
         location.href = "/";
       } else {
         alert(res.msg);
       }
     })
     .catch((err) => {
-      console.error(new Error("에러 발생"));
+      console.error(err);
     });
 }
 
 function toEdit(id) {
-  console.log(document.getElementById("edit" + id));
   let text = document.getElementById("edit" + id);
-  console.log("수정확인", text.value);
+
   const req = {
     id: id,
     description: text.value,
@@ -49,16 +46,14 @@ function toEdit(id) {
   })
     .then((res) => res.json())
     .then((res) => {
-      console.log(res);
       if (res.success) {
-        // alert("수정성공");
         location.href = "/";
       } else {
         alert(res.msg);
       }
     })
     .catch((err) => {
-      console.error(new Error("에러 발생"));
+      console.error(err);
     });
 }
 
@@ -77,18 +72,14 @@ function toCheck(id, isCheck) {
   })
     .then((res) => res.json())
     .then((res) => {
-      console.log(res);
       if (res.success) {
-        // alert("수정성공");
         location.href = "/";
-        console.log("체크");
       } else {
         alert(res.msg);
       }
     })
     .catch((err) => {
-      console.log(err);
-      console.error(new Error("에러 발생"));
+      console.error(err);
     });
 }
 
@@ -96,7 +87,6 @@ function toDelete(id) {
   const req = {
     id: id,
   };
-  // console.log(data);
   fetch("/", {
     method: "DELETE",
     headers: {
@@ -106,16 +96,14 @@ function toDelete(id) {
   })
     .then((res) => res.json())
     .then((res) => {
-      console.log(res);
       if (res.success) {
-        // alert("삭제성공");
         location.href = "/";
       } else {
         alert(res.msg);
       }
     })
     .catch((err) => {
-      console.error(new Error("에러 발생"));
+      console.error(err);
     });
 }
 

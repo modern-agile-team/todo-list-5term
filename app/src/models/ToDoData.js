@@ -1,3 +1,4 @@
+const { text } = require("express");
 const db = require("../config/db");
 
 class ToDoData {
@@ -14,12 +15,11 @@ class ToDoData {
     });
   }
 
-  static saveList(listInfo) {
+  static saveList(text) {
     const sql = "INSERT INTO todolist (description) VALUES(?)";
     return new Promise((resolve, reject) => {
-      db.query(sql, [listInfo.description], (err) => {
+      db.query(sql, [text], (err) => {
         if (err) {
-          console.log("생성 실패");
           console.log(err);
           reject({ success: false, msg: "일정 생성 실패" });
         }
@@ -31,6 +31,7 @@ class ToDoData {
 
   static editData(data) {
     return new Promise((resolve, reject) => {
+      const id = data.id;
       let sql;
       let update;
       if (data.is_check == 0 || data.is_check == 1) {
@@ -41,9 +42,8 @@ class ToDoData {
         update = data.description;
       }
 
-      db.query(sql, [update, data.id], (err) => {
+      db.query(sql, [update, id], (err) => {
         if (err) {
-          console.log("수정 실패");
           console.log(err);
           reject({ success: false, msg: "일정 수정 실패" });
         }
@@ -53,12 +53,11 @@ class ToDoData {
     });
   }
 
-  static deleteData(data) {
+  static deleteData(id) {
     return new Promise((resolve, reject) => {
       const sql = "DELETE FROM todolist WHERE id= ?";
-      db.query(sql, [data.id], (err) => {
+      db.query(sql, [id], (err) => {
         if (err) {
-          console.log("삭제 실패");
           console.log(err);
           reject({ success: false, msg: "일정 삭제 실패" });
         }
@@ -66,6 +65,20 @@ class ToDoData {
         resolve({ success: true });
       });
     });
+  }
+
+  static maxLetterLength(text) {
+    const pattern1 = /[a-zA-Z]/; //영어
+    const pattern2 = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; //한글
+    if (pattern1.test(text) && pattern2.test(text)) {
+      return 16;
+    }
+    if (pattern1.test(text)) {
+      return 30;
+    }
+    if (pattern2.test(text)) {
+      return 16;
+    }
   }
 }
 module.exports = ToDoData;

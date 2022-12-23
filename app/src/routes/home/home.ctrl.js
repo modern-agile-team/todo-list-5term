@@ -11,7 +11,6 @@ const output = {
 const process = {
   getToDoList: async () => {
     const response = await ToDoData.getToDoList();
-    // console.log(response);
     return response;
   },
 
@@ -28,7 +27,6 @@ const process = {
   },
 
   deleteList: async (req, res) => {
-    // console.log(req.body);
     const list = new ToDoList(req.body);
     const response = await list.deleteData();
     return res.json(response);

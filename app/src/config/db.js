@@ -1,6 +1,4 @@
 const mysql = require("mysql");
-const dotenv = require("dotenv");
-dotenv.config();
 
 const host = process.env.DB_HOST;
 
