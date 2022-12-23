@@ -1,27 +1,23 @@
-const express = require('express')
-const app = express()
-const port = 3000
+"use strict";
 
-const toDoLists = ["안녕"]
+//모듈
+const express = require("express");
+const app = express();
 
-app.set('view engine','ejs');
 
-app.use(express.json())
-app.use(express.urlencoded({extended: true}))
+//라우팅
+const home = require("../app/src/routes/home");
 
-app.get('/',(req, res) => {
-    res.render('index', {toDoListTitle: '오늘의 할일: ' + toDoLists.length, toDoLists: toDoLists})
-})
-//add_list에 대한 요청에 대해서 처리
-app.post('/add_list', (req,res)=>{
-    const newContent = req.body.content
-    console.log(newContent + '추가')
-    toDoLists.push(newContent)
-    res.redirect('/')
+//웹세팅
+app.set("views", "./src/views");
+app.set("view engine", "ejs");
+app.use(express.static('${__dirname}/src/public')); 
 
-})
+app.use("/", home); // use -> 미들 웨어를 등록해주는 메서드.
 
-// 실행되면 connected 
-app.listen(port, () => {
-    console.log('connected!')
-})
+module.exports = app;
+
+
+
+
+

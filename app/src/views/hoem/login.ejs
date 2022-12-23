@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <title>todolist</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+     <!-- <script src="/js/home/login.js"></script>--> 
+     <!--  <link rel="stylesheet" href="/css/home/login.css">--> 
+     <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', () => {
+            const input = document.querySelector('#todo')
+            const addButton = document.querySelector('#add-button')
+            const todoList = document.querySelector('#todo-list')
+            const alert = document.querySelector('span')
+
+            const addTodo = () => {
+                if (input.value !== '') {
+                    const item = document.createElement('div')
+
+                    const checkbox = document.createElement('input')
+                    checkbox.type='checkbox'
+
+                    const text = document.createElement('span');
+                   const deleteButton = document.createElement('button')
+                    deleteButton.textContent="제거하기"
+
+                    text.textContent = input.value
+                    input.value=''
+                
+                    item.appendChild(checkbox)
+                    item.appendChild(text)
+                    item.appendChild(deleteButton)
+                    todoList.appendChild(item)
+
+                    checkbox.addEventListener('change', (event) =>{ 
+                        if (event.currentTarget.checked)
+                        {
+                            text.style.textDecoration='line-through',
+                            text.style.color="#797979"
+                        }
+                        else {
+                            text.style.textDecoration='none'
+                        }
+                    })
+
+
+                    deleteButton.addEventListener('click', (event) => {
+                        todoList.removeChild(event.currentTarget.parentNode)
+                    })
+                    input.value =''
+                    alert.textContent = ''
+                }
+            }
+
+            addButton.addEventListener('click', addTodo)
+
+            input.addEventListener('keypress', (event) => {
+                const ENTER = 13
+                if (event.keyCode === ENTER)
+                    addTodo();
+            })
+        })
+     </script>
+     <style>
+        div.mainbox{
+            position: absolute;
+            width: 405px;
+            height: 154px;
+            left: 0px;
+            top: 0px;
+
+            background: #F1F1F1;
+            box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.24);
+            border-radius: 20px;
+        }
+        div.mainbox h1{
+            position: absolute;
+            width: 101.26px;
+            height: 24px;
+            left: 22.06px;
+            top: 25px;
+
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 24px;
+
+            color: #000000;
+        }
+        div.mainbox #todo{
+            box-sizing: border-box;
+            position: absolute;
+            width: 359.23px;
+            height: 34px;
+            left: 23.88px;
+            top: 69px;
+            border-bottom: 1px solid #CBCBCB !important;
+            background-color: transparent;
+            border:0 solid black;
+        }
+        div.mainbox #add-button{
+            box-sizing: border-box;
+            position: absolute;
+            left: 87.2%;
+            right: 6.38%;
+            top: 41.75%;
+            bottom: 39.04%;
+            background-color: transparent;
+            font-size: 28px;
+            border-color: transparent;
+            padding-bottom: 31px;
+        }
+        div#todo-list{
+            box-sizing: border-box;
+
+            position: absolute;
+            width: 359.23px;
+            height: 34px;
+            left: 24px;
+            top: 125px;
+            border-bottom: 1px solid #CBCBCB;
+        }
+        div#todo-list div{
+            box-sizing: border-box;
+            display: flex;
+            border-bottom: 1px solid #CBCBCB;
+        }
+        div#todo-list div:hover{
+            box-sizing: border-box;
+            background: #E0E0E0;
+
+
+        }
+        div#todo-list input{
+
+        }
+        div#todo-list span{
+            width: 85%;
+            display: block;
+  
+        }
+        div#todo-list button{
+            background: url(https://cdn.icon-icons.com/icons2/931/PNG/512/delete_remove_bin_icon-icons.com_72400.png);
+            background-position-x: 0%;
+            background-position-y: 0%;
+            background-repeat: repeat;
+            background-size: auto;
+            color: transparent;
+            border: 0 solid black;
+            display: block;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 100%;
+            width: 25px;
+            height: 24px;
+            float: right;
+
+        }
+        div#todo-list button:hover{
+            width:8%;
+
+
+        }
+
+     </style>
+
+</head>
+<body>
+    <div class="mainbox">
+        <h1>To Do List</h1>
+        <input id="todo">
+        <button id="add-button">+</button>
+        <div id="todo-list"></div>
+    </div>
+</body>
