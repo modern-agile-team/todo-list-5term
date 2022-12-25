@@ -1,0 +1,147 @@
+li:hover {
+    background: #E0E0E0;
+}
+
+
+
+h1 {
+    margin-top: 25px;
+    margin-bottom: 70px;
+    margin-left: 22.06px;
+    font-size: 20px;
+}
+
+#mainBox {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 405px;
+    background: #F1F1F1;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.24);
+    border-radius: 20px;
+    transform: translate3d(-50%, -50%, 0);
+    /*https://velog.io/@apro_xo/CSS-top-left-translate%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EA%B0%80%EC%9A%B4%EB%8D%B0-%EC%A0%95%EB%A0%AC*/
+}
+
+#inputBox {
+    box-sizing: border-box;
+    position: absolute;
+    left: 23.88px;
+    top: 69px;
+    border-bottom: 1px solid #CBCBCB;
+}
+
+#text {
+    width: 330.23px;
+    height: 34px;
+    border: none;
+    background: transparent;
+    margin-right: 25px;
+    outline: none;
+}
+
+#button {
+    cursor: pointer;
+    position: absolute;
+    left: 95.2%;
+    right: 5.38%;
+    top: 37.31%;
+    bottom: 51.36%;
+    display: inline;
+}
+
+#button:hover {
+    font-size: 30px;
+}
+
+#fruits {
+    list-style: none;
+    margin-top: 0px;
+    padding-left: 24px;
+    font-size: 14px;
+}
+
+
+.eraser:before {
+    font-family: "FontAwesome";
+    content: "\f2ed";
+}
+
+.eraser:hover {
+    font-size: 20px;
+    margin: none;
+}
+
+.pencil:before {
+    font-family: "FontAwesome";
+    content: "\f303";
+}
+
+.pencil:hover {
+    font-size: 20px;
+    margin: none;
+}
+
+.eraser,
+.pencil {
+    float: right;
+    margin-top: 3px;
+    cursor: pointer;
+}
+
+.eraser {
+    margin-left: 16px;
+}
+
+.text {
+    display:inline-block;
+    margin-top: 5px;
+    font-family: Inter;
+    font-style: normal;
+    font-size: 14px;
+    font-weight: 400;
+    margin-left: 8px;
+    color: none;
+}
+
+.checkText {
+    font-family: Inter;
+    font-style: normal;
+    font-size: 14px;
+    font-weight: 400;
+    margin-left: 8px;
+    color: #797979;
+    text-decoration: line-through;
+}
+
+input[type="checkbox"] {
+    display: none;
+}
+
+input[type="checkbox"]+label {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border: 1px solid #acacac;
+    position: relative;
+    top: 5px;
+    cursor: pointer;
+}
+
+input[type="checkbox"]:checked+label::after {
+    content: '✔';
+}
+
+.hiddenBtn{
+    border: none;
+    padding: none;
+    background: transparent;
+}
+
+.updateText{
+    border: transparent;
+    outline-color: transparent;
+    width: 250px;
+    margin-left: 5px;
+    margin-right: 5px;
+}

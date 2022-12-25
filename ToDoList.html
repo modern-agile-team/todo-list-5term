@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>To do list</title>
+  <style>
+    li:hover {
+      background: silver;
+    }
+
+    img {
+      height: 25px;
+      margin-left: 10px;
+    }
+
+    img:hover {
+      height: 45px;
+      margin-left: 10px;
+    }
+
+    .checks {
+      margin-right: 100px;
+      color : red;
+    }
+  </style>
+ 
+  <script>
+    function addList() {
+      const addValue = document.getElementById('addValue').value;
+      if (addValue === '') alert('확인 요망');
+      else {
+        const img = document.createElement('img');
+        img.setAttribute('src', 'aaaa.png');
+
+        const img2 = document.createElement('img');
+        img2.setAttribute('src', 'aaaa.png');
+
+        const checkbox = document.createElement('input');
+        checkbox.setAttribute('type', 'checkbox');
+        checkbox.setAttribute('onClick', 'isCheck(this)')
+
+        const li = document.createElement('li'); //li요소 생성
+        li.setAttribute('id', addValue);  //li 속성 id = addValue(text)
+        const textNode = document.createTextNode(addValue); //text 추가하게된다
+        li.append(checkbox, textNode, img, img2); //선택요소 자식 추가
+        document
+          .getElementById('fruits')
+          .appendChild(li);
+      }
+    }
+
+    function isCheck(box) {
+      //closest()등 부모요소 자식요소 가져와서 textNode 변경 확인
+      if (box.checked === true) {
+        box.setAttribute('class', 'checks')
+        alert("check!")
+      }
+      else {
+        box.setAttribute('class', '')
+        alert("none-check!")
+      }
+    }
+  </script>
+
+</head>
+
+<body>
+  <h1>To do list</h1>
+  <input type="text" id='addValue' onKeypress="javascript:if(event.keyCode==13) {addlist()}">
+  <input type="button" value="+" onclick="addList()">
+  <ul id='fruits'></ul>
+
+</body>
+
+</html>
+
+<!--https://www.codingfactory.net/, https://hianna.tistory.com/504-->
