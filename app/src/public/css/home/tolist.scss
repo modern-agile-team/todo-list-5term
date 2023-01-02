@@ -1,0 +1,101 @@
+
+div.mainbox{
+    position: absolute;
+    width: 405px;
+    height: 154px;
+    left: 0px;
+    top: 0px;
+
+    background: #F1F1F1;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.24);
+    border-radius: 20px;
+}
+div.mainbox h1{
+    position: absolute;
+    width: 101.26px;
+    height: 24px;
+    left: 22.06px;
+    top: 25px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+
+    color: #000000;
+}
+div.mainbox #todo{
+    box-sizing: border-box;
+    position: absolute;
+    width: 359.23px;
+    height: 34px;
+    left: 23.88px;
+    top: 69px;
+    border-bottom: 1px solid #CBCBCB !important;
+    background-color: transparent;
+    border:0 solid black;
+}
+div.mainbox #add-button{
+    box-sizing: border-box;
+    position: absolute;
+    left: 87.2%;
+    right: 6.38%;
+    top: 41.75%;
+    bottom: 39.04%;
+    background-color: transparent;
+    font-size: 28px;
+    border-color: transparent;
+    padding-bottom: 31px;
+}
+div#todo-list{
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 359.23px;
+    height: 34px;
+    left: 24px;
+    top: 125px;
+
+}
+div#todo-list div{
+    box-sizing: border-box;
+    display: flex;
+    border-bottom: 1px solid #CBCBCB;
+}
+div#todo-list div:hover{
+    box-sizing: border-box;
+    background: #E0E0E0;
+
+
+}
+div#todo-list input{
+
+}
+div#todo-list span{
+    width: 85%;
+    display: block;
+
+}
+div#todo-list button{
+    background: url(https://png.pngtree.com/element_our/20190530/ourlarge/pngtree-cartoon-trash-can-icon-design-image_1251439.jpg);
+    background-position-x: 0%;
+    background-position-y: 0%;
+    background-repeat: repeat;
+    background-size: auto;
+    color: transparent;
+    border: 0 solid black;
+    display: block;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 25px;
+    height: 24px;
+    float: right;
+
+}
+div#todo-list button:hover{
+    width:8%;
+
+
+}
