@@ -1,4 +1,4 @@
-const toDoData = require("./ToDoData");
+const toDoData = require('./ToDoData');
 
 class ToDoLsit {
   constructor(body) {
@@ -9,10 +9,10 @@ class ToDoLsit {
     const text = this.body.description;
     try {
       if (!text) {
-        return { success: false, msg: "일정을 입력하세요" };
+        return { success: false, msg: '일정을 입력하세요' };
       }
       if (text.length >= toDoData.maxLetterLength(text)) {
-        return { success: false, msg: "글의 길이가 너무 깁니다." };
+        return { success: false, msg: '글의 길이가 너무 깁니다.' };
       }
       return await toDoData.saveList(text);
     } catch (err) {
@@ -23,13 +23,19 @@ class ToDoLsit {
   async editData() {
     const client = this.body;
     const text = this.body.description;
+    const isCheck = this.body.is_check;
+
     try {
+      if (Number.isInteger(isCheck)) {
+        return await toDoData.editData(client);
+      }
+
       if (!text) {
-        return { success: false, msg: "일정을 입력하세요." };
+        return { success: false, msg: '일정을 입력하세요.' };
       }
 
       if (text.length > toDoData.maxLetterLength(text)) {
-        return { success: false, msg: "글의 길이 너무 깁니다." };
+        return { success: false, msg: '글의 길이 너무 깁니다.' };
       }
 
       return await toDoData.editData(client);
